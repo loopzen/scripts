@@ -1,0 +1,4 @@
+#!/bin/bash
+# NOTE TO INBOX
+echo -e "\n# NOTE\n* $*" >> ~/doc/gtd/1_in.md
+echo -e "${CYAN}# NOTE${RESET}\n * $*"

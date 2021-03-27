@@ -1,0 +1,36 @@
+#!/bin/bash
+# FZF dotifiles selectector
+declare -a options=(
+"dunstrc - $XDG_CONFIG_HOME/dunst/dunstrc"
+"ssh - $HOME/.ssh/config"
+"bashrc - $HOME/.bashrc"
+"i3 - $XDG_CONFIG_HOME/i3/config"
+"muttrc - $XDG_CONFIG_HOME/mutt/muttrc"
+"newsboat - $XDG_CONFIG_HOME/newsboat/config"
+"newsboat-urls - $XDG_CONFIG_HOME/newsboat/urls"
+"tmuxrc - $HOME/.tmux.conf"
+"tmuxp - $XDG_CONFIG_HOME/tmuxp"
+"w3m - $HOME/config"
+"w3m-keymap - $HOME/.w3m/keymap"
+"xdefaults - $XDG_CONFIG_HOME/X11/xdefaults"
+"zshrc - $XDG_CONFIG_HOME/zsh/.zshrc"
+"snippets - $XDG_CONFIG_HOME/.config/snippet"
+"gitconfig - $XDG_CONFIG_HOME/git/config"
+"mysql - $XDG_CONFIG_HOME/mysql/my.cnf"
+"abook - $XDG_CONFIG_HOME/abook/abookrc"
+"homepage - $XDG_CONFIG_HOME/homepage/homepage.html $XDG_CONFIG_HOME/homepage/homepage.css"
+"bat - $XDG_CONFIG_HOME/bat/config"
+"vimspector - $XDG_CONFIG_HOME/nvim/plugged/vimspector/configurations/linux"
+"picom - $XDG_CONFIG_HOME/picom/picom.conf"
+"keynav - $XDG_CONFIG_HOME/keynav/keynavrc"
+"dbeaver - $XDG_DATA_HOME/DBeaverData/workspace6/General/.dbeaver"
+"nvim - $XDG_CONFIG_HOME/nvim/init.vim"
+"vimrc - $XDG_CONFIG_HOME/nvim/init.vim"
+"vifmrc - $XDG_CONFIG_HOME/vifm/vifmrc"
+"nvim-snippets - $XDG_CONFIG_HOME/coc/ultisnips/"
+)
+
+# Picking a file
+filelist=$(printf '%s\n' "${options[@]}" | fzf --prompt 'Config: ') || exit
+file=$(echo "$filelist" | awk '{print $3}')
+$EDITOR $file

@@ -1,0 +1,34 @@
+#!/bin/bash
+# GLOBAL opener files function
+# pdf, video and image is lauched with & to dont block terminal
+# Zathura doesnt open pdf because doesnt exist zathura.desktop file
+
+open(){
+    # FIX filename with sapces
+    filetype=$(file --mime-type -b -F "\n" "$*")
+    FILE=$(echo "$*")
+
+    if [[ "$filetype" == "text/x-script.python" ]]; then
+        nvim "$FILE"
+    elif [[ "$filetype" == "text/"* ]]; then
+        nvim "$FILE"
+    elif [[ "$filetype" == "application/pdf" ]] || [[ "$filetype" == "application/epub+zip" ]]; then
+        nohup zathura "$FILE" >/dev/null 2>&1 &
+    elif [[ "$filetype" == "image/"* ]]; then
+        nohup sxiv "$FILE" >/dev/null 2>&1 &
+    elif [[ "$filetype" == "video/"* ]]; then
+        nohup mpv "$FILE" >/dev/null 2>&1 &
+    elif [[ "$filetype" == "audio/"* ]]; then
+        mpv --force-window "$FILE" >/dev/null 2>&1 &
+    elif [[ "$filetype" == "inode/directory" ]] || [[ "$filetype" == "inode/link" ]]; then
+        vifm "$FILE"
+    else
+        xdg-open $FILE
+    fi
+}
+
+if [ "$#" -eq 1 ]; then
+    open $*
+elif [ "$#" -gt 1 ]; then
+    open $1
+fi

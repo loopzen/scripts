@@ -1,0 +1,9 @@
+#!/bin/bash
+# Copy to clipboard Examples:
+#     * cat file.md | clip
+#     * tree src | clip
+to_clip(){
+   xclip -selection clipboard
+}
+
+to_clip $*

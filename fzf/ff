@@ -1,0 +1,4 @@
+#!/bin/bash
+# FZF file/directories opene
+SELECTION=$(find $HOME/* -not -path "*/\.*" -not -path "$HOME/bck/*" -not -path "$HOME/tmp/*" -not -path "$HOME/rep/*" -not -name "*.class" 2>&1 | grep -v "Permission denied" | fzf --prompt=" EDIT > ")
+opener $SELECTION

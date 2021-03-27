@@ -1,0 +1,16 @@
+#!/bin/sh
+# CUSTOM DMENU_RUN
+# You can execute whatever command
+VAR1=""
+
+dmenu_path(){
+    IFS=':'
+    for i in $PATH
+    do
+        VAR2=$(find "$i" -maxdepth 1 -executable -type f -printf "%f\n")
+        VAR1="${VAR1}\n${VAR2}"
+    done
+
+}
+dmenu_path
+echo -e $VAR1 | dmenu -sf '#FFFFFF' -sb '#dc322f' -nb '#002B35'  -nf '#FFFFFF' -fn 'SauceCodeProNerdFontMono:size=10:Bold' -p "λ /bin/sh >" "$@" | ${SHELL:-"/bin/sh"} &

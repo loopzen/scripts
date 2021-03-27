@@ -1,0 +1,32 @@
+#!/bin/bash
+# FZF to select connections to databases
+source ~/src/scripts/functions.sh
+
+connect_sqlite3(){
+    echo -e "${YELLOW}[WARN] - ¡AUTOCOMMIT!${RESET} -> Use BEGIN; to control transaction"
+    sqlite3 -init $XDG_CONFIG_HOME/sqlite3/sqliterc $1
+}
+
+connect_mysql(){
+    # load config $MYSQL_HOME
+    mysql $*
+}
+
+connect_oracle(){
+    sqlplus $1
+}
+
+# VARIABLES
+DB_CONNECTIONS=$HOME/src/conf/db_connections
+SELECTED_CONNECTION=$(awk 'NR > 1 {print $0}' $DB_CONNECTIONS | fzf )
+CONNECTION=$(echo $SELECTED_CONNECTION | awk '{$1="";$2="";print}')
+log_inf $CONNECTION
+if [[ $SELECTED_CONNECTION == *"sqlite"* ]]; then
+    connect_sqlite3 $CONNECTION
+elif [[ $SELECTED_CONNECTION == *"oracle"* ]]; then
+    connect_oracle $CONNECTION
+elif [[ $SELECTED_CONNECTION == *"mysql"* ]]; then
+    connect_mysql $CONNECTION
+else
+    log_error [ERROR] - gestor de base de datos con configurado
+fi

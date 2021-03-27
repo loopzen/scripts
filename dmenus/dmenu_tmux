@@ -1,0 +1,18 @@
+#!/bin/bash
+####################################
+# DMENU - TO CHANGE BETWEEN TMUX SESSION/WINDOWS
+####################################
+SESSIONS_AND_WINDOWS=
+
+for SESSION in $(tmux list-sessions -F "#{session_name}")
+do
+    for WINDOW in $(tmux list-windows -t $SESSION -F "#{window_name}")
+    do
+        SESSIONS_AND_WINDOWS=${SESSIONS_AND_WINDOWS}${SESSION}:${WINDOW}\\n
+    done
+done
+
+WINDOW_SELECTED=$(echo -e $SESSIONS_AND_WINDOWS | dmenu -i -sf '#FFFFFF' -sb '#2AA198' -nb '#002B35'  -nf '#FFFFFF' -fn 'SauceCodeProNerdFontMono:size=10:Bold' -p 'CHOOSE SESSION -> ')
+SESSION_SELECTED=$(echo $WINDOW_SELECTED | cut -d ':' -f 1)
+i3-msg '[title="^\['${SESSION_SELECTED}'\]"] focus'
+tmux select-window -t $WINDOW_SELECTED

@@ -1,0 +1,6 @@
+#!/bin/bash
+# Permanent notification
+notify-send --app-name=PERMANENT-NOTIFICATION \
+    --icon=/usr/share/icons/Adwaita/32x32/actions/view-pin-symbolic.symbolic.png \
+    --urgency=critical \
+    "========" "$*"

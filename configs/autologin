@@ -1,0 +1,37 @@
+#!/usr/bin/python3
+import os
+
+
+def activate_autologin(user_name):
+    """
+    Enable autologin
+    Insert -> ExecStart=-/sbin/agetty -a USERNAME %I $TERM
+            into the file /usr/lib/systemd/system/getty@service
+    """
+    pattern = "ExecStart"
+    newLine = "ExecStart=-/sbin/agetty -a {} %I $TERM\n".format(user_name)
+    fileName = "/usr/lib/systemd/system/getty@.service"
+    try:
+        file = open(fileName, "r")
+        # Create new content
+        output  = ""
+        for line in file:
+            if pattern in line:
+                output += line.replace(line, newLine)
+            else:
+                output += line
+        file.close()
+        # Save it into the file
+        fileOutput = open(fileName, "w")
+        fileOutput.write(output)
+        fileOutput.close()
+        print("INFO - Autologin enable with USER_NAME: {}".format(user_name))
+        print("INFO - Command: {}".format(newLine))
+        print ("fileName = {}".format(fileName))
+    except Exception as e:
+        print(e)
+        print("Error enabling AUTOLOGIN")
+
+
+if __name__ == "__main__":
+    activate_autologin(os.getlogin())
