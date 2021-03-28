@@ -1,0 +1,200 @@
+#!/usr/bin/python3
+#######################################
+# Install your packages
+# AUTHOR: [loopzen](https://github.com/loopzen)
+# DATE: 22/12/2018
+#######################################
+import os
+host_name = os.uname()[1]
+
+all_pacman_programs = [
+    "archlinux-keyring",  # update gpg keys
+    "sudo",  # execute commands like superuser
+    "make",  # base package
+    "pkgconf",  # base package
+    "patch",  # base package
+    "gcc",  # base package
+    "autoconf",  # base package
+    "automake",  # base package
+    "binutils",  # base package
+    "bison",  # base package
+    "fakeroot",  # base package
+    "wget",  # web downloader
+    "xorg-xkill",  # kill X windows
+    "sxiv",  # image viewer
+    "thunar",  # gui file explorer
+    "mpv",  # multimedia player
+    "meld",  # GUI diff/merge tool
+    "openssl",  # ssh and ftp support
+    "sshpass",  # Utility to pass password to ssh/sftp command
+    "neomutt",  # terminal email
+    "isync",  # sync offline emails
+    "firefox",  # browser
+    "tmux",  # terminal multiplexer
+    "dunst",  # notifications
+    "network-manager-applet",  # network-manager
+    "network-manager-openvpn",  # vpn support to network-manager
+    "feh",  # wallpaper-manager
+    "playerctl",  # audio controller
+    "tree",  # show files and directories
+    "xorg-server",  # X server to GUI apps
+    "xorg-xinit",  # X server dependency
+    "i3-gaps",  # i3 window-manager
+    "i3lock",  # i3 lockscreen
+    "zsh",  # zsh shell
+    "rxvt-unicode",  # urxvt terminal emulator
+    "youtube-dl-git",  # youtube downloader
+    "urxvt-perls",  # urxvt scripts support
+    "scrot",  # terminal screenshot
+    "flameshot",  # gui screenshot
+    "imagemagick",  # required to my beautiful lock-screen
+    "dbus",  # required to my beautiful lock-screen
+    "python-pip",  # python packages installer
+    "ttf-font-awesome",  # fonts
+    "libreoffice-fresh",  # Libreoffice
+    "qbittorrent",  # Cli-torrent
+    "simplescreenrecorder",  # Screenrecorder
+    "neovim",  # neovim
+    "htop",  # Process viewer - task manager
+    "git",  # git
+    "unzip",  # unzip
+    "unrar",  # unrar
+    "screenfetch",  # info about system
+    "pfetch",  # simple and fast info about system
+    "cmatrix",  # matrix
+    "cowsay",  # cow message
+    "fortune-mod",  # fortune
+    "lolcat",  # rainbow to output of commands
+    "vifm",  # terminal file explorer
+    "fzf",  # fuzzy finder
+    "zathura",  # document viewer
+    "zathura-pdf-mupdf",  # pdf, ebup, etc, support
+    "cmus",  # terminal music program
+    "arandr",  # visual monitor manager
+    "lxappearance",  # GTK theme config
+    "ctags",  # tags
+    "w3m",  # terminal browser + terminal image support
+    "pulseaudio",  # enable audio keys
+    "virtualbox",  # virtual machines
+    "virtualbox-host-modules-arch",  # virtual host modules
+    "virtualbox-guest-modules-arch",  # virtual guest modules
+    "virtualbox-ext-vnc",  # virtual extension pack
+    "ntfs-3g",  # reading ntfs support
+    "geckodriver",  # browser robot to selenium
+    "ruby",  # ruby and gems
+    "cronie",  # cronjobs
+    "pandoc",  # file converter
+    "texlive-most",  # file converter
+    "newsboat",  # RSS feed reader
+    "tumbler",  # Thunar thumbnails
+    "ffmpegthumbnailer",  # Thunar thumbnails
+    "translate-shell",  # Google Traductor in terminal
+    "acpilight",  # Brightness controller (xbaclight)
+    "xclip",  # clipboard manager
+    "xsel",  # clipboard manager
+    "proxychains-ng",  # proxy manager
+    "abook",  # terminal address book
+    "pass",  # password manager
+    "pass-otp",  # two factor authentication to pass
+    "oath-toolkit",  # Two factor authentication
+    "zbar",  # QR codes reader
+    "xf86-video-fbdev",  # rasberry support -> X.org driver
+    "udiskie",  # automount devices
+    "exa",  # ls improved
+    "plantuml",  # neccesary to use uml vim plugin
+    "graphviz",  # neccesary to use uml vim plugin
+    "davmail",  # office365 or exchange manager
+    "chafa",  # terminal image viewwer
+    "ufw",  # uncomplicated FIREWALL
+    "bat",  # cat with superpowers (syntax higlight and pager)
+    "picom",  # compositor manger
+    "keynav",  # keyboard mouse control
+    "shellcheck-bin",  # sh check
+    "dmenu",  # dmenu 
+    # "figlet",                  # program to create beautiful letters
+    # "gimp",                    # image editor
+    # "peek",                         # GIF recorder
+]
+all_aur_programs = [
+    "vimv",  # bulkrename files with vim
+    "vim-plug",  # vim plugin manager
+    "redshift-gtk-git",  # screenfilter
+    "perl-anyevent-i3",  # Comunicate with the i3 window manager
+    "simple-mtpfs",  # MTP protocol to tranfer file with android devices
+    "polybar",  # polybar
+    "virtualbox-ext-oracle",  # virtualbox extension pack oracle
+    "chromedriver",  # chrome driver to selenium
+    "spotify",  # spotify
+    "acestream-launcher",  # acestream engine to acestream channels
+    "gtk-theme-numix-solarized",  # gtk theme
+    "numix-white-icons",  # gtk icons
+    "monolith-git",  # cli to save html pages in one file
+    "alttab-git",  # alt tab behaviour
+    "rxvt-unicode-pixbuf-patched",  # urxvt terminal emulator (with icon support to alttab program)
+    "soapui",  # soap ui
+    "dragon-drag-and-drop",  # drag and drop to/from terminal
+    "eslint",  # javascript linter
+    "colorpicker",  # terminal colorpicker
+    "imapfilter",  # filter to mail
+    "readability-cli",  # firefox reader to w3m
+    "scrcpy",  # screencast mobile
+    "nordvpn-bin",  # vpn
+    # "pencil",              # gui prototyping/wireframing tool
+]
+all_pip_programs = [
+    "black",  # python PEP8 formatter
+    "flake8",  # python linter
+    "i3ipc",  # required by my i3 config
+    "pynvim",  # Pynvim implements support for python plugins in Nvim.
+    "selenium",  # WebScrapping
+    "django",  # django web framework
+    "dbus-python",  # required by spotify polybar module
+    "khal",  # calendar cli
+    "vdirsyncer",  # sync calendar to local
+    "rofi-greenclip",  # clipboard manager
+    "ueberzug",  # ucollage dependency
+    "py-trello",  # ucollage dependency
+    # "xlsx2csv",         # xlsx to csv
+]
+all_npm_programs = [
+]
+
+
+def installer(command, programs_to_install):
+    for program in programs_to_install:
+        try:
+            os.system(command + program)
+            print("INFO - COMANDO: " + command + program)
+        except Exception:
+            print("ERROR installing... " + program)
+
+
+def paru_packages_installer(pacman_programs, aur_programms):
+    print("########## PACKAGES ###########")
+    paru_command = "sudo paru --color always --needed --noconfirm -S "
+    installer(paru_command, pacman_programs)
+    installer(paru_command, aur_programms)
+
+
+def pip_packages_installer(pip_programs):
+    print("########## PIP PACKAGES ##########")
+    pip_command = "sudo pip install "
+    installer(pip_command, pip_programs)
+
+
+def npm_packages_installer(npm_programs):
+    print("########## NPM PACKAGES ###########")
+    for program in npm_programs:
+        npm_command = "sudo npm install {} -g".format(program)
+        os.system(npm_command)
+        print("INFO - COMMAND: " + npm_command)
+
+
+def main():
+    paru_packages_installer(all_pacman_programs, all_aur_programs)
+    pip_packages_installer(all_pip_programs)
+    npm_packages_installer(all_npm_programs)
+
+
+if __name__ == "__main__":
+    main()
