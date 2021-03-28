@@ -2,6 +2,7 @@
 USEFUL SCRIPTS
 ----------------------------------
 
+~~~txt
 loopzenY/scripts
 ├── configs (system configurations)
 │   ├── autoinstallation (Install all your packages after Linux installation)
@@ -28,3 +29,4 @@ loopzenY/scripts
     ├── nt (Set Notification Permanent. It is like a post_it)
     ├── send_mail_gmail.py (send mail)
     └── trello_extractor.py (extract notes from  Trello)
+~~~
