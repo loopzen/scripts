@@ -2,8 +2,9 @@
 USEFUL SCRIPTS
 ----------------------------------
 
+# CONTENT
 ~~~txt
-loopzenY/scripts
+loopzen/scripts
 ├── configs (system configurations)
 │   ├── autoinstallation (Install all your packages after Linux installation)
 │   ├── autologin (Set autologin in your $USER session)
@@ -15,13 +16,13 @@ loopzenY/scripts
 │   ├── dmenu_executor (Run any command with dmenu)
 │   └── dmenu_tmux (Dmenu tmus windows selector)
 ├── fzf (Fuzzy Finder scripts)
-│   ├── fcfg
-│   ├── fdb
-│   ├── ff
+│   ├── fcfg (Choose dotfile to edit)
+│   ├── ff (Find file and open it with programmand defined in opener script)
 │   ├── opener (called by ff)
-│   ├── fssh
-│   ├── ssh_paths.awk
-│   └── ssh_paths.sh
+│   ├── fdb (see fdb section)
+│   ├── fssh (sed fssh section)
+│   ├── ssh_paths.awk (see fssh section)
+│   └── ssh_paths.sh (see fssh section)
 └── utilities
     ├── clear_history.sh
     ├── clip (Copy to clipboard)
