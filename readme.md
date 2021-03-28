@@ -37,9 +37,9 @@ loopzen/scripts
 When you run fssh this happen:
 1. You have to choose between ssh or sftp connection
 2. You have to choose the Host and the paths (local and remote)
-    * The Hosts to choose and defined into a file. 
-    * With ssh_paths.sh you can load your Host defined into .ssh/config with
-      default init paths. If you can define more path, you have to add them
+    * The hosts to choose are defined into a file like next
+    * With ssh_paths.sh you can load your Hosts defined into .ssh/config with
+      "default" init paths. If you want define more paths, you have to add them
       manually.
 
 ~~~txt
@@ -64,8 +64,7 @@ server2                          | easyhackeablepass
 
 ## fdb
 
-* fdb selects a connection of a file like this and connect with the database cli
-  appropiate
+* fdb selects a connection of a file like this and connects with the appropiate database cli
 
 ~~~txt
 NAME              | CONNECTION
