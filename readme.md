@@ -1,8 +1,6 @@
-----------------------------------
-USEFUL SCRIPTS
-----------------------------------
+# USEFUL SCRIPTS
 
-# CONTENT
+## CONTENT
 ~~~txt
 loopzen/scripts
 ├── configs                    (system configurations)
@@ -14,23 +12,64 @@ loopzen/scripts
 │   └── keynav_launcher.sh     (Script to may keynav to any key. Useful with i3)
 ├── dmenus                     (dmenus scripts)
 │   ├── dmenu_executor         (Run any command with dmenu)
-│   └── dmenu_tmux             (Dmenu tmus windows selector)
+│   └── dmenu_tmux             (Dmenu tmux windows selector)
 ├── fzf                        (Fuzzy Finder scripts)
 │   ├── fcfg                   (Choose dotfile to edit)
 │   ├── ff                     (Find file and open it with programmand defined in opener script)
-│   ├── opener                 (called by ff)
-│   ├── fdb                    (see fdb section)
-│   ├── fssh                   (sed fssh section)
-│   ├── ssh_paths.awk          (see fssh section)
-│   └── ssh_paths.sh           (see fssh section)
+│   ├── opener                 (Called by ff)
+│   ├── fdb                    (See [fdb](#fdb section)
+│   ├── fssh                   (See [fssh](#fssh) section)
+│   ├── ssh_paths.awk          (See [fssh](#fssh) section)
+│   └── ssh_paths.sh           (See [fssh](#fssh) section)
 └── utilities
-    ├── clear_history.sh
+    ├── clear_history.sh       (Clear Firefox history, cache...)
     ├── clip                   (Copy to clipboard)
-    ├── in                     (Copy to inbox file ( GTD method))
+    ├── in                     (Copy to inbox file (GTD method))
     ├── nt                     (Set Notification Permanent. It is like a post_it)
-    ├── send_mail_gmail.py     (send mail)
-    └── trello_extractor.py    (extract notes from  Trello)
+    ├── send_mail_gmail.py     (Send mail)
+    └── trello_extractor.py    (Extract notes from Trello)
 ~~~
 
-# fssh
-# fdb
+## fssh
+
+> fssh lets you connect server quickly
+
+When you run fssh this happen:
+1. You have to choose between ssh or sftp connection
+2. You have to choose the Host and the paths (local and remote)
+    * The Hosts to choose and defined into a file. 
+    * With ssh_paths.sh you can load your Host defined into .ssh/config with
+      default init paths. If you can define more path, you have to add them
+      manually.
+
+~~~txt
+init_login_paths
+host1 | default | default
+host2 | default | default
+host2 | /home/user/path/to/local/directory | /home/user/path/to/remote/directory
+~~~
+
+3. Connect
+    * If you have a ssh-key shared with the host, fssh connects directly
+    * If you don't have ssh-key, it connect with sshpass
+    * fssh decides how to connect reading a file like this. If the Host is not
+      in this file, it try to connect directly
+
+~~~txt
+autologins
+CONNECTION                       | PASSWORD
+server1                          | superpass
+server2                          | easyhackeablepass
+~~~
+
+## fdb
+
+* fdb selects a connection of a file like this and connect with the database cli
+  appropiate
+
+~~~txt
+NAME              | CONNECTION
+mysql_clients     | --host=localhost --port=3306 --protocol=TCP --user=user --password=pass --database=database
+oracle_workers    | USER/mypass3@server:port/sid
+sqlite_configs    | /home/loopzen/src/configs/configs.db
+~~~
