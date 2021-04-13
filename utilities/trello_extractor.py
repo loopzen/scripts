@@ -13,10 +13,6 @@ client = TrelloClient(
     token=config["TRELLO"]["TOKEN"]
 )
 
-GTD_BOARD_ID = "58f0778c1e3c1023fb416882"
-GTD_LIST_INBOX_ID = "5ac04b4785a2351d00e263c5"
-
-
 def extraer_info_card(card):
     info = "\n# {} \n".format(card.name)
     info += "* {} \n".format(card.description)
