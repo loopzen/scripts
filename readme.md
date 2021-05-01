@@ -3,6 +3,12 @@
 ## CONTENT
 ~~~txt
 loopzen/scripts
+├── test                       (test with bats)
+│  ├── test_helpers
+│  ├── functions.bats
+│  ├── in.bats
+│  ├── nt.bats
+│  └── opener.bats
 ├── configs                    (system configurations)
 │   ├── autoinstallation       (Install all your packages after Linux installation)
 │   ├── autologin              (Set autologin in your $USER session)
@@ -26,8 +32,7 @@ loopzen/scripts
     ├── clip                   (Copy to clipboard)
     ├── in                     (Copy to inbox file (GTD method))
     ├── nt                     (Set Notification Permanent. It is like a post_it)
-    ├── send_mail_gmail.py     (Send mail)
-    └── trello_extractor.py    (Extract notes from Trello)
+    └── functions.sh           General useful functions
 ~~~
 
 ## fssh
